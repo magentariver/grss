@@ -1,0 +1,21 @@
+{% autoescape xhtml_escape %}<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/1999/xhtml">
+    <channel>
+        <title>Google Plus RSS Feed for {{ gid }}</title>
+        <description>Google Plus RSS Feed for IFTTT</description>
+        <link>http://grss.magentariver.com/feed?gid={{ gid }}</link>
+        <atom:link rel="self" href="http://grss.magentariver.com/feed?gid={{ gid }}"/>
+        <generator>MagentaRiver RSS v{{ version }}</generator>
+        <pubDate>{{ pubDate }}</pubDate>
+        {% for item in items %}
+        <item>
+            <title><![CDATA[{% if item['title'] %}{% raw item['title'] %}{% else %}.{% end %}]]></title>
+            <description><![CDATA[{% if item['description'] %}{% raw item['description'] %}{% else %}.{% end %}]]></description>
+            <link>{{ item['link'] }}</link>
+            <guid isPermaLink="false">{{ item['guid'] }}</guid>
+            <pubDate>{{ item['pubDate'] }}</pubDate>
+        </item>
+        {% end %}
+    </channel>
+</rss>
+
